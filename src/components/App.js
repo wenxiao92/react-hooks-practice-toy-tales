@@ -31,6 +31,23 @@ function App() {
     setToys(updatedToy)
   }
 
+  function refilterLikes(toyToUpdate){
+  fetch('http://localhost:3001/toys')
+  .then((r) => r.json())
+  .then((data) => setToys(data))
+
+  //   console.log(toyToUpdate)
+  //   //maps through each toy and looks up the id. If matches, then return the toy's object and push into an array
+  //   //Eventually, map will come across the toy you updated and return that toy's data and then update
+  //   //the state with the new array. Alternatively, we can refetch the whole JSON data and set state
+  //   const updatedToys = toys.map((toy) =>
+  //   toy.id === toyToUpdate.id ? toyToUpdate : toy
+  // );
+  // console.log(updatedToys)
+  // setToys(updatedToys);
+
+  }
+
   return (
     <>
       <Header />
@@ -38,7 +55,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer toyData={toys} onDeleteToy={refilterDeleted}/>
+      <ToyContainer toyData={toys} onDeleteToy={refilterDeleted} onUpdateToy={refilterLikes}/>
     </>
   );
 }
